@@ -1,0 +1,108 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Album */
+
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Albums', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
+?>
+<div class="album-view">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Поменять имя', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Загрузить картинку', ['allphoto/save-album', 'personal_id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить альбом', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+
+    <section class="first_page container row">
+
+        <div class="col-4 grid_img">
+            <?php for ($i=0;$i<count($photo);$i=$i+3): ?>
+
+                <div class="hovereffect">
+                    <img class="img-responsive" src="<?php Yii::getAlias('@web') ?>/uploads/<?= $photo[$i]->img ?>" alt="">
+                    <div class="overlay">
+                        <p>
+                            <?= Html::a('Изменить', ['allphoto/set-image', 'id' => $photo[$i]->id]) ?>
+                            <br>
+                            <?= Html::a('Удалить', ['allphoto/delete', 'id' => $photo[$i]->id],[
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to delete this item?',
+                                    'method' => 'post',
+                                ],
+                            ]) ?>
+                        </p>
+                        <br>
+
+                    </div>
+                </div>
+            <?php endfor;?>
+
+        </div>
+        <div class="col-4 grid_img">
+            <?php for ($i=1;$i<count($photo);$i=$i+3): ?>
+                <div class="hovereffect">
+                    <img class="img-responsive" src="<?php Yii::getAlias('@web') ?>/uploads/<?= $photo[$i]->img ?>" alt="">
+                    <div class="overlay">
+                        <p>
+                            <?= Html::a('Изменить', ['allphoto/set-image', 'id' => $photo[$i]->id]) ?>
+                            <br>
+                            <?= Html::a('Удалить', ['allphoto/delete', 'id' => $photo[$i]->id],[
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to delete this item?',
+                                    'method' => 'post',
+                                ],
+                            ]) ?>
+                        </p>
+                        <br>
+
+                    </div>
+                </div>
+            <?php endfor;?>
+
+        </div>
+        <div class="col-4 grid_img">
+            <?php for ($i=2;$i<count($photo);$i=$i+3): ?>
+                <div class="hovereffect">
+                    <img class="img-responsive" src="<?php Yii::getAlias('@web') ?>/uploads/<?= $photo[$i]->img ?>" alt="">
+                    <div class="overlay">
+                        <p>
+                            <?= Html::a('Изменить', ['allphoto/set-image', 'id' => $photo[$i]->id]) ?>
+                            <br>
+                            <?= Html::a('Удалить', ['allphoto/delete', 'id' => $photo[$i]->id],[
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to delete this item?',
+                                    'method' => 'post',
+                                ],
+                            ]) ?>
+                        </p>
+                        <br>
+
+                    </div>
+                </div>
+            <?php endfor;?>
+
+        </div>
+
+
+    </section>
+    <script>
+    	$( "img" ).click(function() {
+			console.log(this);
+		});
+    </script>
+
+</div>

@@ -1,0 +1,12 @@
+php_value upload_max_filesize 500M
+php_value post_max_size 500M
+php_value memory_limit 256M
+RewriteEngine On RewriteBase /
+RewriteCond %{HTTPS} off 
+RewriteCond %{HTTP:X-Forwarded-Proto} !https 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . index.php
